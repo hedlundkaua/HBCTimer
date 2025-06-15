@@ -18,19 +18,22 @@ public class DailyGoal implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	private Instant date;
 	private Instant time;
 	
-	public DailyGoal(Integer id, Instant date, Instant time) {
+	public DailyGoal() {
+	}
+	
+	public DailyGoal(Long id, Instant date, Instant time) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.time = time;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
