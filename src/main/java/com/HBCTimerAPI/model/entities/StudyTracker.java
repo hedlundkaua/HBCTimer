@@ -26,6 +26,7 @@ public class StudyTracker implements Serializable{
 	private Duration totalTime;
 	private Boolean isActive;
 	
+	
 
 	
 	public StudyTracker() {
