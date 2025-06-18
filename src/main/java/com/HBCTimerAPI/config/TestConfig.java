@@ -1,5 +1,6 @@
 package com.HBCTimerAPI.config;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
@@ -10,9 +11,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.HBCTimerAPI.model.entities.DailyGoal;
 import com.HBCTimerAPI.model.entities.Matter;
+import com.HBCTimerAPI.model.entities.StudyTracker;
 import com.HBCTimerAPI.model.entities.User;
 import com.HBCTimerAPI.repository.DailyGoalRepository;
 import com.HBCTimerAPI.repository.MatterRepository;
+import com.HBCTimerAPI.repository.StudyTrackerRepository;
 import com.HBCTimerAPI.repository.UserRepository;
 
 @Configuration
@@ -28,6 +31,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private DailyGoalRepository dailyGoalRepository;
+	
+	@Autowired
+	private StudyTrackerRepository studyTrackerRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -46,7 +52,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	userRepository.saveAll(Arrays.asList(u1, u2));
 			
+	StudyTracker st1 = new StudyTracker(null, Instant.parse("2019-06-20T19:53:07Z"), Instant.parse("2019-06-20T20:53:07Z"), Duration.ofHours(1).plusMinutes(30), false);
 	
+	studyTrackerRepository.save(st1);
 		
 	}
 }
