@@ -1,12 +1,17 @@
 package com.HBCTimerAPI.model.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,14 +26,29 @@ public class Matter implements Serializable{
 	private String name;
 	private String description;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	private User student;
+	
+	
+	@OneToMany(mappedBy = "id.matter")
+	private Set<StudyTracker> studies = new HashSet<>();
+	
 	public Matter() {
 	}
 	
-	public Matter(Long id, String name, String description) {
+	public Matter(Long id, String name, String description, User student) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.student = student;
+	}
+	
+	
+	public Set<StudyTracker> getStudies() {
+		return studies;
 	}
 
 	public Long getId() {
@@ -41,6 +61,10 @@ public class Matter implements Serializable{
 
 	public String getDescription() {
 		return description;
+	}
+	
+	public User getStudent() {
+		return student;
 	}
 
 	@Override
