@@ -2,10 +2,11 @@ package com.HBCTimerAPI.model.entities;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,14 +27,14 @@ public class StudySession {
 	
 	
 	private Instant date;
-	private Duration totalTimeDate;
+	private Duration totalTimeOfDay = Duration.ZERO;
 
 	@ManyToOne
 	@JoinColumn(name = "student_id")
 	private User student;
 	
-	@OneToMany(mappedBy = "id.session")
-	private Set<StudyTracker> items = new HashSet<>();
+	@OneToMany(mappedBy = "id.session", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<StudyTracker> items = new ArrayList<>();
 	
 	public StudySession() {
 		
@@ -43,7 +44,7 @@ public class StudySession {
 		super();
 		this.id = id;
 		this.date = date;
-		this.totalTimeDate = totalTimeDate;
+		this.totalTimeOfDay = totalTimeDate;
 		this.student = student;
 	}
 
@@ -55,18 +56,33 @@ public class StudySession {
 		return date;
 	}
 
-	public Duration getTotalTimeDate() {
-		return totalTimeDate;
+	public Duration getTotalTimeOfDay() {
+		return totalTimeOfDay;
 	}
 
 	public User getStudent() {
 		return student;
 	}
-
-	public Set<StudyTracker> getItems() {
+	
+	public List<StudyTracker> getItems() {
 		return items;
 	}
 
+	public void setTotalTimeOfDay(Duration total) {
+		this.totalTimeOfDay = total;
+	}
+	
+	public void addTracker(StudyTracker tracker) {
+	    items.add(tracker);
+	    totalTimeOfDay = totalTimeOfDay.plus(tracker.getTotalTime());
+	}
+	
+	public void updateTotalTimeOfDay() {
+	    this.totalTimeOfDay = items.stream()
+	        .map(StudyTracker::getTotalTime)
+	        .reduce(Duration.ZERO, Duration::plus);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

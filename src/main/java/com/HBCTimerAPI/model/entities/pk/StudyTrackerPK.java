@@ -23,6 +23,8 @@ public class StudyTrackerPK implements Serializable{
 	@JoinColumn(name = "session_id")
 	private StudySession session;
 	
+	 private Integer sequence;
+	
 	public Matter getMatter() {
 		return matter;
 	}
@@ -38,10 +40,17 @@ public class StudyTrackerPK implements Serializable{
 	public void setSession(StudySession session) {
 		this.session = session;
 	}
+	public Integer getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(matter, session);
+		return Objects.hash(matter, sequence, session);
 	}
 
 	@Override
@@ -53,6 +62,7 @@ public class StudyTrackerPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		StudyTrackerPK other = (StudyTrackerPK) obj;
-		return Objects.equals(matter, other.matter) && Objects.equals(session, other.session);
+		return Objects.equals(matter, other.matter) && Objects.equals(sequence, other.sequence)
+				&& Objects.equals(session, other.session);
 	}	
 }
