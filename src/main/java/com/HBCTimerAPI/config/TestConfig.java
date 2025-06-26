@@ -56,8 +56,8 @@ public class TestConfig implements CommandLineRunner{
 	StudySession ss1 = new StudySession(null, Instant.parse("2025-06-22T18:05:00Z"), Duration.ZERO, u1);
 	
 	
-	StudyTracker st1 = new StudyTracker(m1, ss1,1, Instant.parse("2025-06-22T18:05:00Z"), Instant.parse("2025-06-22T19:05:00Z"), false);
-	StudyTracker st2 = new StudyTracker(m1, ss1,2, Instant.parse("2025-06-22T19:05:00Z"), Instant.parse("2025-06-22T21:05:00Z"), false);
+	StudyTracker st1 = new StudyTracker(m1, ss1, null, Instant.parse("2025-06-22T18:05:00Z"), Instant.parse("2025-06-22T19:05:00Z"), false);
+	StudyTracker st2 = new StudyTracker(m1, ss1, null, Instant.parse("2025-06-22T19:05:00Z"), Instant.parse("2025-06-22T21:05:00Z"), false);
 
 	ss1.addTracker(st1);
 	ss1.addTracker(st2);

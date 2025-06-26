@@ -7,6 +7,8 @@ import com.HBCTimerAPI.model.entities.Matter;
 import com.HBCTimerAPI.model.entities.StudySession;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -23,7 +25,8 @@ public class StudyTrackerPK implements Serializable{
 	@JoinColumn(name = "session_id")
 	private StudySession session;
 	
-	 private Integer sequence;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	 private Long sequence;
 	
 	public Matter getMatter() {
 		return matter;
@@ -40,11 +43,11 @@ public class StudyTrackerPK implements Serializable{
 	public void setSession(StudySession session) {
 		this.session = session;
 	}
-	public Integer getSequence() {
+	public Long getSequence() {
 		return sequence;
 	}
 
-	public void setSequence(Integer sequence) {
+	public void setSequence(Long sequence) {
 		this.sequence = sequence;
 	}
 

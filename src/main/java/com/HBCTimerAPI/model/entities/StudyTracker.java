@@ -64,7 +64,7 @@ public class StudyTracker implements Serializable{
 		
 	}
 	
-	public StudyTracker(Matter matter, StudySession session, Integer sequence, Instant startTime, Instant endTime, Boolean isActive) {
+	public StudyTracker(Matter matter, StudySession session, Long sequence, Instant startTime, Instant endTime, Boolean isActive) {
 		super();
 		id.setMatter(matter);
 		id.setSession(session);
