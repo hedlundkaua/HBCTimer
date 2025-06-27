@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.HBCTimerAPI.dto.UserDTO;
-import com.HBCTimerAPI.dto.UserResponseDTO;
+import com.HBCTimerAPI.dto.user.UserProfileDTO;
+import com.HBCTimerAPI.dto.user.UserResponseDTO;
 import com.HBCTimerAPI.model.entities.User;
 import com.HBCTimerAPI.services.UserService;
 
@@ -30,7 +30,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<List<UserResponseDTO>> findAll(){ 
 		List<User> list = service.findAll();
-		return ResponseEntity.ok().body(UserResponseDTO.transformaVariosEmDTO(list)); //esta retornando uma lista
+		return ResponseEntity.ok().body(UserResponseDTO.transformaVariosEmDTOSemSenha(list)); //esta retornando uma lista
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -40,9 +40,9 @@ public class UserController {
 	}
 		
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> insert(@RequestBody UserDTO obj){
+	public ResponseEntity<UserResponseDTO> insert(@RequestBody UserProfileDTO obj){
 		User user = service.insert(obj.criaObjeto());
-		return ResponseEntity.ok().body(UserResponseDTO.transformaEmDTO(user));
+		return ResponseEntity.ok().body(UserResponseDTO.transformaEmDTOSemSenha(user));
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -56,5 +56,7 @@ public class UserController {
 		user= service.update(id, user);
 		return ResponseEntity.ok().body(user);
 	}
+	
+	
 	
 }

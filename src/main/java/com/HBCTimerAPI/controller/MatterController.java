@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.HBCTimerAPI.dto.matter.MatterResponseDTO;
 import com.HBCTimerAPI.model.entities.Matter;
 import com.HBCTimerAPI.services.MatterService;
 
@@ -20,14 +21,14 @@ public class MatterController {
 	private MatterService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Matter>> findAll(){
+	public ResponseEntity<List<MatterResponseDTO>> findAll(){
 		List<Matter> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(MatterResponseDTO.transfromaVariosMatterEmDTO(list));
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Matter> findById(@PathVariable Long id) {
+	public ResponseEntity<MatterResponseDTO> findById(@PathVariable Long id) {
 		Matter obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(MatterResponseDTO.transformaMatterEmDTO(obj));
 	}
 }

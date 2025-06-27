@@ -34,9 +34,6 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "student")
 	private List<Matter> matters = new ArrayList<>();
 	
-	
-	
-	
 	public User() {
 	}
 
@@ -68,8 +65,6 @@ public class User implements Serializable{
 		return matters;
 	}
 	
-	
-
 	public void setName(String name) {
 		this.name = name;
 	}
