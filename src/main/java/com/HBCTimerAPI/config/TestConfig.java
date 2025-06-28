@@ -49,9 +49,11 @@ public class TestConfig implements CommandLineRunner{
 	userRepository.saveAll(Arrays.asList(u1, u2));
 			
 	Matter m1 = new Matter(null, "Portugues", "aulas", u1);
+	Matter m2 = new Matter(null, "Portugues", "aulas", u2);
+	Matter m3 = new Matter(null, "Portugues", "aulas", u2);
 	
 	
-	matterRepository.save(m1);
+	matterRepository.saveAll(Arrays.asList(m1,m2,m3));
 	
 	StudySession ss1 = new StudySession(null, Instant.parse("2025-06-22T18:05:00Z"), Duration.ZERO, u1);
 	

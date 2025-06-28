@@ -24,5 +24,8 @@ public class MatterService {
 		return obj.get();
 	}
 	
-	
+	public void deleteById(Long id) {
+		repository.deleteById(id);	
+	}
+
 }
