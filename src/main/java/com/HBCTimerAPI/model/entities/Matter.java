@@ -66,6 +66,14 @@ public class Matter implements Serializable{
 	public User getStudent() {
 		return student;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Override
 	public int hashCode() {

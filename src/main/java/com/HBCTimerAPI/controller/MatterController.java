@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,6 +52,12 @@ public class MatterController {
 	public ResponseEntity<MatterResponseDTO> insert(@RequestBody MatterProfileDTO matterDTO){
 		User user = userService.findById(matterDTO.getUserId());
 		Matter matter = service.insert(matterDTO.criaObjeto(user));
+		return ResponseEntity.ok().body(MatterResponseDTO.transformaMatterEmDTO(matter));
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<MatterResponseDTO> update(@PathVariable Long id, @RequestBody Matter matter){
+		matter = service.update(id, matter);
 		return ResponseEntity.ok().body(MatterResponseDTO.transformaMatterEmDTO(matter));
 	}
 }

@@ -32,4 +32,15 @@ public class MatterService {
 		return repository.save(matter);
 	}
 	
+	public Matter update(Long id, Matter obj) {
+		Matter matter = repository.getReferenceById(id);
+		updateData(matter, obj);
+		return repository.save(matter);
+	}
+	
+	private void updateData(Matter matter, Matter obj) {
+		matter.setName(obj.getName());
+		matter.setDescription(obj.getDescription());		
+	}
+	
 }
