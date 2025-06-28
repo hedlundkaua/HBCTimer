@@ -1,8 +1,5 @@
 package com.HBCTimerAPI.dto.matter;
 
-import com.HBCTimerAPI.domain.entities.Matter;
-import com.HBCTimerAPI.domain.entities.User;
-
 public class MatterProfileDTO {
 	
 	private String name;
@@ -33,9 +30,5 @@ public class MatterProfileDTO {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	public Matter criaObjeto(User user) {
-		return new Matter(null, this.name, this.description, user);
 	}
 }

@@ -44,17 +44,4 @@ public class MatterResponseDTO {
 	public Set<StudyTracker> getStudies() {
 		return studies;
 	}
-
-	/*
-	public static MatterResponseDTO transformaMatterEmDTO(Matter m) {
-		return new MatterResponseDTO(m.getId(), m.getName(), m.getDescription(), UserResponseDTO.transformaEmDTOSemSenha(m.getStudent()), m.getStudies());
-	}
-	
-	public static List<MatterResponseDTO> transfromaVariosMatterEmDTO(List<Matter> matter){
-		List<MatterResponseDTO> mrDTO = new ArrayList<>();
-		for(Matter m : matter) {
-			mrDTO.add(new MatterResponseDTO(m.getId(), m.getName(), m.getDescription(), UserResponseDTO.transformaEmDTOSemSenha(m.getStudent()), m.getStudies()));		
-		}
-		return mrDTO;	
-	}*/
 }

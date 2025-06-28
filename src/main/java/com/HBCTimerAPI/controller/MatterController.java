@@ -52,7 +52,7 @@ public class MatterController {
 	@PostMapping
 	public ResponseEntity<MatterResponseDTO> insert(@RequestBody MatterProfileDTO matterDTO){
 		User user = userService.findById(matterDTO.getUserId());
-		Matter matter = service.insert(matterDTO.criaObjeto(user));
+		Matter matter = service.insert(MatterMapper.toEntity(matterDTO, user));
 		return ResponseEntity.ok().body(MatterMapper.toDTO(matter));
 	}
 	
