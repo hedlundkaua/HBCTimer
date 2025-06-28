@@ -1,7 +1,7 @@
 package com.HBCTimerAPI.dto.matter;
 
-import com.HBCTimerAPI.model.entities.Matter;
-import com.HBCTimerAPI.model.entities.User;
+import com.HBCTimerAPI.domain.entities.Matter;
+import com.HBCTimerAPI.domain.entities.User;
 
 public class MatterProfileDTO {
 	

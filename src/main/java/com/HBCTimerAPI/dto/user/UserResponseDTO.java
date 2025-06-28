@@ -3,7 +3,7 @@ package com.HBCTimerAPI.dto.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.HBCTimerAPI.model.entities.User;
+import com.HBCTimerAPI.domain.entities.User;
 
 public class UserResponseDTO {
 

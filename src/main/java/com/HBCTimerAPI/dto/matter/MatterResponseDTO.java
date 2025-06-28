@@ -1,13 +1,10 @@
 package com.HBCTimerAPI.dto.matter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import com.HBCTimerAPI.domain.entities.StudyTracker;
 import com.HBCTimerAPI.dto.user.UserResponseDTO;
-import com.HBCTimerAPI.model.entities.Matter;
-import com.HBCTimerAPI.model.entities.StudyTracker;
 
 public class MatterResponseDTO {
 
@@ -20,11 +17,7 @@ public class MatterResponseDTO {
 	private Set<StudyTracker> studies = new HashSet<>();
 
 	
-	private MatterResponseDTO() {
-		
-	}
-	
-	private MatterResponseDTO(Long id, String name, String description, UserResponseDTO user, Set<StudyTracker> studies) {
+	public MatterResponseDTO(Long id, String name, String description, UserResponseDTO user, Set<StudyTracker> studies) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -52,6 +45,7 @@ public class MatterResponseDTO {
 		return studies;
 	}
 
+	/*
 	public static MatterResponseDTO transformaMatterEmDTO(Matter m) {
 		return new MatterResponseDTO(m.getId(), m.getName(), m.getDescription(), UserResponseDTO.transformaEmDTOSemSenha(m.getStudent()), m.getStudies());
 	}
@@ -62,5 +56,5 @@ public class MatterResponseDTO {
 			mrDTO.add(new MatterResponseDTO(m.getId(), m.getName(), m.getDescription(), UserResponseDTO.transformaEmDTOSemSenha(m.getStudent()), m.getStudies()));		
 		}
 		return mrDTO;	
-	}
+	}*/
 }

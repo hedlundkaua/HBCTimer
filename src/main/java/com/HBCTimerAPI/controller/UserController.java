@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.HBCTimerAPI.domain.entities.User;
 import com.HBCTimerAPI.dto.user.UserProfileDTO;
 import com.HBCTimerAPI.dto.user.UserResponseDTO;
-import com.HBCTimerAPI.model.entities.User;
 import com.HBCTimerAPI.services.UserService;
 
 @RestController

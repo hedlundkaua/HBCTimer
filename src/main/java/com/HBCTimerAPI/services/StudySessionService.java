@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.HBCTimerAPI.model.entities.StudySession;
+import com.HBCTimerAPI.domain.entities.StudySession;
 import com.HBCTimerAPI.repository.StudySessionRepository;
 
 @Service
@@ -18,4 +18,9 @@ public class StudySessionService {
 		Optional<StudySession> obj = repository.findById(id);
 		return obj.get();
 	 }
+	 
+	 public void deleteById(Long id) {
+		 repository.deleteById(id);
+	 }
+	 
 }

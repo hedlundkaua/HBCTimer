@@ -3,8 +3,8 @@ package com.HBCTimerAPI.model.entities.pk;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.HBCTimerAPI.model.entities.Matter;
-import com.HBCTimerAPI.model.entities.StudySession;
+import com.HBCTimerAPI.domain.entities.Matter;
+import com.HBCTimerAPI.domain.entities.StudySession;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.GeneratedValue;

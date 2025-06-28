@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.HBCTimerAPI.model.entities.DailyGoal;
+import com.HBCTimerAPI.domain.entities.DailyGoal;
 import com.HBCTimerAPI.repository.DailyGoalRepository;
 
 @Service

@@ -9,11 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.HBCTimerAPI.model.entities.DailyGoal;
-import com.HBCTimerAPI.model.entities.Matter;
-import com.HBCTimerAPI.model.entities.StudySession;
-import com.HBCTimerAPI.model.entities.StudyTracker;
-import com.HBCTimerAPI.model.entities.User;
+import com.HBCTimerAPI.domain.entities.DailyGoal;
+import com.HBCTimerAPI.domain.entities.Matter;
+import com.HBCTimerAPI.domain.entities.StudySession;
+import com.HBCTimerAPI.domain.entities.StudyTracker;
+import com.HBCTimerAPI.domain.entities.User;
 import com.HBCTimerAPI.repository.DailyGoalRepository;
 import com.HBCTimerAPI.repository.MatterRepository;
 import com.HBCTimerAPI.repository.StudySessionRepository;

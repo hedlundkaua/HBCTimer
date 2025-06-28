@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.HBCTimerAPI.model.entities.User;
+import com.HBCTimerAPI.domain.entities.User;
 import com.HBCTimerAPI.repository.UserRepository;
 import com.HBCTimerAPI.services.exceptions.ResourceNotFoundException;
 

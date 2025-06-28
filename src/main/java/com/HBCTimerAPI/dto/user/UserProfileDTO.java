@@ -1,6 +1,6 @@
 package com.HBCTimerAPI.dto.user;
 
-import com.HBCTimerAPI.model.entities.User;
+import com.HBCTimerAPI.domain.entities.User;
 
 public class UserProfileDTO {
 

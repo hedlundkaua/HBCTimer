@@ -1,4 +1,4 @@
-package com.HBCTimerAPI.model.entities;
+package com.HBCTimerAPI.domain.entities;
 
 import java.time.Duration;
 import java.time.Instant;
