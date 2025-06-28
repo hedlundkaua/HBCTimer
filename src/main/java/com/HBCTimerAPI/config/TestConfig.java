@@ -48,9 +48,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	userRepository.saveAll(Arrays.asList(u1, u2));
 			
-	Matter m1 = new Matter(null, "Portugues", "aulas", u1);
-	Matter m2 = new Matter(null, "Portugues", "aulas", u2);
-	Matter m3 = new Matter(null, "Portugues", "aulas", u2);
+	Matter m1 = new Matter(null, "Portugues", "Segunda", u1);
+	Matter m2 = new Matter(null, "Matematica", "Quarta", u2);
+	Matter m3 = new Matter(null, "Ciencias", "Sexta", u2);
 	
 	
 	matterRepository.saveAll(Arrays.asList(m1,m2,m3));

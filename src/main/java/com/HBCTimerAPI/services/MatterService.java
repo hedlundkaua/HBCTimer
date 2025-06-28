@@ -28,4 +28,8 @@ public class MatterService {
 		repository.deleteById(id);	
 	}
 
+	public Matter insert(Matter matter) {
+		return repository.save(matter);
+	}
+	
 }

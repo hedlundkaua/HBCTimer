@@ -34,9 +34,9 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){
+	public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id){
 		User obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(UserResponseDTO.transformaEmDTOSemSenha(obj));
 	}
 		
 	@PostMapping
@@ -50,13 +50,9 @@ public class UserController {
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
-	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
 		user= service.update(id, user);
 		return ResponseEntity.ok().body(user);
 	}
-	
-	
-	
 }

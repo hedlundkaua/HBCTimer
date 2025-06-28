@@ -4,7 +4,6 @@ import com.HBCTimerAPI.model.entities.User;
 
 public class UserProfileDTO {
 
-	private Long id;
 	private String name;
 	private String email;
 	private String password;
@@ -22,6 +21,6 @@ public class UserProfileDTO {
 	}
 
 	public User criaObjeto() {
-		return new User(id, name, email, password);
+		return new User(null, name, email, password);
 	}	
 }

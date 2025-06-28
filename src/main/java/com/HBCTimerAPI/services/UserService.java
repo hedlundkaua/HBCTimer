@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.HBCTimerAPI.model.entities.User;
 import com.HBCTimerAPI.repository.UserRepository;
+import com.HBCTimerAPI.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -21,7 +22,8 @@ public class UserService {
 	
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id); //Optional Usado quando podemos ter ou não uma resposta
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado!"));
+		
 	}
 	
 	public User insert(User obj){

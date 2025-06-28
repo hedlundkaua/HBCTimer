@@ -52,7 +52,6 @@ public class MatterResponseDTO {
 		return studies;
 	}
 
-	
 	public static MatterResponseDTO transformaMatterEmDTO(Matter m) {
 		return new MatterResponseDTO(m.getId(), m.getName(), m.getDescription(), UserResponseDTO.transformaEmDTOSemSenha(m.getStudent()), m.getStudies());
 	}
