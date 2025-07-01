@@ -32,7 +32,7 @@ public class Matter implements Serializable{
 	private User student;
 	
 	
-	@OneToMany(mappedBy = "id.matter")
+	@OneToMany(mappedBy = "matter")
 	private Set<StudyTracker> studies = new HashSet<>();
 	
 	public Matter() {

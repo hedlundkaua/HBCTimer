@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,20 +28,22 @@ public class StudySession {
 	
 	
 	private Instant date;
-	private Duration totalTimeOfDay = Duration.ZERO;
+	
+	@Column(name = "total_time_of_day")
+	private Long totalTimeOfDay = 0L;
 
 	@ManyToOne
 	@JoinColumn(name = "student_id")
 	private User student;
 	
-	@OneToMany(mappedBy = "id.session", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<StudyTracker> items = new ArrayList<>();
 	
 	public StudySession() {
 		
 	}
 
-	public StudySession(Long id, Instant date, Duration totalTimeDate, User student) {
+	public StudySession(Long id, Instant date, Long totalTimeDate, User student) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -57,7 +60,7 @@ public class StudySession {
 	}
 
 	public Duration getTotalTimeOfDay() {
-		return totalTimeOfDay;
+		return totalTimeOfDay != null ? Duration.ofSeconds(totalTimeOfDay) : Duration.ZERO;
 	}
 
 	public User getStudent() {
@@ -68,20 +71,27 @@ public class StudySession {
 		return items;
 	}
 
-	public void setTotalTimeOfDay(Duration total) {
-		this.totalTimeOfDay = total;
+	public void setTotalTimeOfDay(Duration duration) {
+		this.totalTimeOfDay = duration != null ? duration.getSeconds() : 0L;
 	}
 	
 	public void addTracker(StudyTracker tracker) {
 	    items.add(tracker);
-	    totalTimeOfDay = totalTimeOfDay.plus(tracker.getTotalTime());
+	    Duration currentTotal = getTotalTimeOfDay(); // converte o long para Duration
+	    Duration trackerDuration = tracker.getTotalTime();
+	    Duration newTotal = currentTotal.plus(trackerDuration != null ? trackerDuration : Duration.ZERO);
+	    setTotalTimeOfDay(newTotal); // converte Duration para long e salva no campo
 	}
-	
+
 	public void updateTotalTimeOfDay() {
-	    this.totalTimeOfDay = items.stream()
+	    Duration total = items.stream()
 	        .map(StudyTracker::getTotalTime)
+	        .filter(Objects::nonNull)
 	        .reduce(Duration.ZERO, Duration::plus);
+
+	    setTotalTimeOfDay(total);
 	}
+
 	
 	@Override
 	public int hashCode() {

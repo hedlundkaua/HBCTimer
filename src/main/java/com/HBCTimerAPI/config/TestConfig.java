@@ -1,6 +1,5 @@
 package com.HBCTimerAPI.config;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
@@ -55,11 +54,11 @@ public class TestConfig implements CommandLineRunner{
 	
 	matterRepository.saveAll(Arrays.asList(m1,m2,m3));
 	
-	StudySession ss1 = new StudySession(null, Instant.parse("2025-06-22T18:05:00Z"), Duration.ZERO, u1);
+	StudySession ss1 = new StudySession(null, Instant.parse("2025-06-22T18:05:00Z"), 0L, u1);
 	
 	
-	StudyTracker st1 = new StudyTracker(m1, ss1, null, Instant.parse("2025-06-22T18:05:00Z"), Instant.parse("2025-06-22T19:05:00Z"), false);
-	StudyTracker st2 = new StudyTracker(m1, ss1, null, Instant.parse("2025-06-22T19:05:00Z"), Instant.parse("2025-06-22T21:05:00Z"), false);
+	StudyTracker st1 = new StudyTracker(m1, ss1, Instant.parse("2025-06-22T18:05:00Z"), Instant.parse("2025-06-22T19:05:00Z"), false);
+	StudyTracker st2 = new StudyTracker(m1, ss1, Instant.parse("2025-06-22T19:05:00Z"), Instant.parse("2025-06-22T21:05:00Z"), false);
 
 	ss1.addTracker(st1);
 	ss1.addTracker(st2);
@@ -68,3 +67,4 @@ public class TestConfig implements CommandLineRunner{
 	sessionRepository.save(ss1);
 	}
 }
+

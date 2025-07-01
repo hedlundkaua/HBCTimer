@@ -5,11 +5,14 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.HBCTimerAPI.model.entities.pk.StudyTrackerPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -19,19 +22,16 @@ public class StudyTracker implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	/*@Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	 */	
-	
-	@EmbeddedId
-    private StudyTrackerPK id = new StudyTrackerPK();
-	
+	 
+
 	private Instant startTime;
 	private Instant endTime;
 	private Boolean isActive;	
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "matter_id")
 	private Matter matter;
 	
@@ -43,54 +43,32 @@ public class StudyTracker implements Serializable{
 		
 	}
 	
-	public StudyTracker(Long id, Instant startTime, Instant endTime, Boolean isActive, Matter matter,
-			StudySession session) {
+	public StudyTracker(Matter matter, StudySession session, Instant startTime, Instant endTime, Boolean isActive) {
 		super();
-		this.id = id;
+		this.matter = matter;
+		this.session = session;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.isActive = isActive;
-		this.matter = matter;
-		this.session = session;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
-	*/
-	
-	public StudyTracker() {
-		
-	}
-	
-	public StudyTracker(Matter matter, StudySession session, Long sequence, Instant startTime, Instant endTime, Boolean isActive) {
-		super();
-		id.setMatter(matter);
-		id.setSession(session);
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.isActive = isActive;
-		id.setSequence(sequence);
-	}
-	
 	@JsonIgnore
 	public Matter getMatter() {
-		return id.getMatter();
+		return matter;
 	}
 	
 	@JsonIgnore
 	public StudySession getSession() {
-		return id.getSession();
+		return session;
 	}
-	
 	
 	public Instant getStartTime() {
 		return startTime;
 	}
-	public void setSession(StudySession session) {
-		id.setSession(session);
-	}
+	
 	public Instant getStart() {
 		return startTime;
 	}
@@ -100,10 +78,8 @@ public class StudyTracker implements Serializable{
 	public Duration getTotalTime() {
 	    if(startTime != null && endTime != null) {
 	    	return Duration.between(startTime, endTime);
-	    }else {
-	    	
 	    }
-	    return Duration.ZERO;
+	 return Duration.ZERO;
 	}
 	
 	public void updateSessionTotalTime() {
