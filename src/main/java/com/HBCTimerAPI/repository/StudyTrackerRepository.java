@@ -6,4 +6,5 @@ import com.HBCTimerAPI.domain.entities.StudyTracker;
 
 public interface StudyTrackerRepository extends JpaRepository<StudyTracker, Long>{
 
+	
 }
