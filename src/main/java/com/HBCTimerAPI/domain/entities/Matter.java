@@ -1,9 +1,9 @@
 package com.HBCTimerAPI.domain.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Matter implements Serializable{
 	
 	
 	@OneToMany(mappedBy = "matter")
-	private Set<StudyTracker> studies = new HashSet<>();
+	private List<StudyTracker> studies = new ArrayList<>();
 	
 	public Matter() {
 	}
@@ -47,7 +47,7 @@ public class Matter implements Serializable{
 	}
 	
 	
-	public Set<StudyTracker> getStudies() {
+	public List<StudyTracker> getStudies() {
 		return studies;
 	}
 

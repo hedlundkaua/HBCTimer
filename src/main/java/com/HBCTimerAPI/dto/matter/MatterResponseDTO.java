@@ -1,7 +1,7 @@
 package com.HBCTimerAPI.dto.matter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.HBCTimerAPI.domain.entities.StudyTracker;
 import com.HBCTimerAPI.dto.user.UserResponseDTO;
@@ -14,10 +14,10 @@ public class MatterResponseDTO {
 	
 	private UserResponseDTO user;
 	
-	private Set<StudyTracker> studies = new HashSet<>();
+	private List<StudyTracker> studies = new ArrayList<>();
 
 	
-	public MatterResponseDTO(Long id, String name, String description, UserResponseDTO user, Set<StudyTracker> studies) {
+	public MatterResponseDTO(Long id, String name, String description, UserResponseDTO user, List<StudyTracker> studies) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -41,7 +41,7 @@ public class MatterResponseDTO {
 		return user;
 	}
 	
-	public Set<StudyTracker> getStudies() {
+	public List<StudyTracker> getStudies() {
 		return studies;
 	}
 }

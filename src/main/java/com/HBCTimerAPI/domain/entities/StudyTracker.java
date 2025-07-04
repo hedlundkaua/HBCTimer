@@ -44,7 +44,6 @@ public class StudyTracker implements Serializable{
 	}
 	
 	public StudyTracker(Matter matter, StudySession session, Instant startTime, Instant endTime, Boolean isActive) {
-		super();
 		this.matter = matter;
 		this.session = session;
 		this.startTime = startTime;
@@ -76,20 +75,11 @@ public class StudyTracker implements Serializable{
 		return endTime;
 	}
 	public Duration getTotalTime() {
+		//verifica se o inicio e o fim são nulos, caso de verdadeiro ele calcula o tempo de estudos
 	    if(startTime != null && endTime != null) {
 	    	return Duration.between(startTime, endTime);
 	    }
 	 return Duration.ZERO;
-	}
-	
-	public void updateSessionTotalTime() {
-	    if (getSession() != null) {
-	        Duration total = getSession().getItems().stream()
-	            .map(StudyTracker::getTotalTime)
-	            .reduce(Duration.ZERO, Duration::plus);
-
-	        getSession().setTotalTimeOfDay(total);
-	    }
 	}
 	
 	public Boolean getIsActive() {
