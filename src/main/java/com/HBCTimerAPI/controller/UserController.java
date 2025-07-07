@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.HBCTimerAPI.domain.entities.User;
-import com.HBCTimerAPI.dto.user.UserProfileDTO;
+import com.HBCTimerAPI.dto.user.UserRequestDTO;
 import com.HBCTimerAPI.dto.user.UserResponseDTO;
+import com.HBCTimerAPI.mapper.UserMapper;
 import com.HBCTimerAPI.services.UserService;
 
 @RestController
@@ -30,19 +31,19 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<List<UserResponseDTO>> findAll(){ 
 		List<User> list = service.findAll();
-		return ResponseEntity.ok().body(UserResponseDTO.transformaVariosEmDTOSemSenha(list)); //esta retornando uma lista
+		return ResponseEntity.ok().body(UserMapper.toDTOList(list)); //esta retornando uma lista
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id){
 		User obj = service.findById(id);
-		return ResponseEntity.ok().body(UserResponseDTO.transformaEmDTOSemSenha(obj));
+		return ResponseEntity.ok().body(UserMapper.toDTO(obj));
 	}
 		
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> insert(@RequestBody UserProfileDTO obj){
-		User user = service.insert(obj.criaObjeto());
-		return ResponseEntity.ok().body(UserResponseDTO.transformaEmDTOSemSenha(user));
+	public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO obj){
+		User user = service.insert(UserMapper.toEntity(obj));
+		return ResponseEntity.ok().body(UserMapper.toDTO(user));
 	}
 	
 	@DeleteMapping(value = "/{id}")

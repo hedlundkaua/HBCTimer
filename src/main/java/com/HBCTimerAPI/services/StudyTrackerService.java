@@ -43,6 +43,7 @@ public class StudyTrackerService {
 		StudyTracker tracker = StudyTrackerMapper.toEntity(dto, matter, session);
 		StudyTracker savedTracker = studyTrackerRepo.save(tracker);
 		
+		
 		session.addTracker(savedTracker);
 		session.updateTotalTimeOfDay();
 		sessionRepo.save(session);

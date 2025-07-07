@@ -8,7 +8,6 @@ import com.HBCTimerAPI.domain.entities.Matter;
 import com.HBCTimerAPI.domain.entities.User;
 import com.HBCTimerAPI.dto.matter.MatterProfileDTO;
 import com.HBCTimerAPI.dto.matter.MatterResponseDTO;
-import com.HBCTimerAPI.dto.user.UserResponseDTO;
 
 public class MatterMapper {
 	
@@ -21,7 +20,7 @@ public class MatterMapper {
 				entity.getId(),
 				entity.getName(),
 				entity.getDescription(),
-				UserResponseDTO.transformaEmDTOSemSenha(entity.getStudent()),
+				UserMapper.toDTO(entity.getStudent()),
 				entity.getStudies());
 		}
 	
