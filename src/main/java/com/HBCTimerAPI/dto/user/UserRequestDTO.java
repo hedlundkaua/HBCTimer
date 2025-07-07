@@ -1,8 +1,6 @@
 package com.HBCTimerAPI.dto.user;
 
-import com.HBCTimerAPI.domain.entities.User;
-
-public class UserProfileDTO {
+public class UserRequestDTO {
 
 	private String name;
 	private String email;
@@ -20,7 +18,4 @@ public class UserProfileDTO {
 		return password;
 	}
 
-	public User criaObjeto() {
-		return new User(null, name, email, password);
-	}	
 }
