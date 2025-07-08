@@ -92,8 +92,8 @@ public class StudySession {
 	}
 
 	public void updateTotalTimeOfDay() {
-	    Duration total = items.stream()// cria uma stream com a lista de items
-	        .map(StudyTracker::getTotalTime) //para cada StudyTracker ele pega o getTotalTime
+	    Duration total = items.stream()// cria uma stream com a lista de items(Lista de StudyTrackers)
+	        .map(StudyTracker::getTotalTime) //para cada StudyTracker ele pega o getTotalTime -> que por sua vez calcula os blocos de estudos iniciados.
 	        .filter(Objects::nonNull) // filtra para remover qualquer ocorrencia null da lista
 	        .reduce(Duration.ZERO, Duration::plus); // como nosso metodo getTotalTime retorna Duration, podemos fazer
 	    //a soma dos getTotalTime começando por Duration.ZERO e ir somando esses getTotalTime

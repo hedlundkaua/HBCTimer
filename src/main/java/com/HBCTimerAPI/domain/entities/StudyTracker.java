@@ -75,7 +75,7 @@ public class StudyTracker implements Serializable{
 		return endTime;
 	}
 	public Duration getTotalTime() {
-		//verifica se o inicio e o fim são nulos, caso de verdadeiro ele calcula o tempo de estudos
+		//verifica se o inicio e o fim são diferentes de nulos, caso de verdadeiro ele calcula o tempo de estudos
 	    if(startTime != null && endTime != null) {
 	    	return Duration.between(startTime, endTime);
 	    }
