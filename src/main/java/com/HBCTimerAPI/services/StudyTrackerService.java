@@ -53,7 +53,7 @@ public class StudyTrackerService {
 	
 	public void deleteById(Long id) {
 		StudyTracker tracker = studyTrackerRepo.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException(id)); //recupera a tracker que deseja apagar
+				.orElseThrow(() -> new ResourceNotFoundException(id));//recupera a tracker que deseja apagar
 		
 		StudySession session = tracker.getSession(); //chama o studysession pegando a sessão que está vinculada ao tracker
 		
@@ -68,6 +68,26 @@ public class StudyTrackerService {
 	
 	public List<StudyTracker> findAll(){
 		return studyTrackerRepo.findAll();
+	}
+	
+	public StudyTracker update(Long id, StudyTracker obj){
+		StudyTracker tracker = studyTrackerRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(id));
+		updateData(tracker, obj);
+		
+		StudySession session = tracker.getSession(); //chama o studysession pegando a sessão que está vinculada ao tracker
+		
+		session.updateTotalTimeOfDay(); //atualiza o totaltimeofday
+		
+		sessionRepo.save(session); //persiste a session 
+		
+		
+		return studyTrackerRepo.save(tracker);
+	}
+	
+	private void updateData(StudyTracker tracker, StudyTracker obj) {
+		tracker.setStartTime(obj.getStartTime());
+		tracker.setEndTime(obj.getEndTime());
 	}
 	
 	

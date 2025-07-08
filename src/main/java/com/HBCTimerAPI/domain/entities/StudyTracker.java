@@ -74,6 +74,19 @@ public class StudyTracker implements Serializable{
 	public Instant getEnd() {
 		return endTime;
 	}
+	
+	public Instant getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Instant endTime) {
+		this.endTime = endTime;
+	}
+
+	public void setStartTime(Instant startTime) {
+		this.startTime = startTime;
+	}
+
 	public Duration getTotalTime() {
 		//verifica se o inicio e o fim são diferentes de nulos, caso de verdadeiro ele calcula o tempo de estudos
 	    if(startTime != null && endTime != null) {
