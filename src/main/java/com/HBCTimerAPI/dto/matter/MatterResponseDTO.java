@@ -12,16 +12,16 @@ public class MatterResponseDTO {
 	private String name;
 	private String description;
 	
-	private UserResponseDTO user;
+	private UserResponseDTO userResponseDTO;
 	
 	private List<StudyTracker> studies = new ArrayList<>();
 
 	
-	public MatterResponseDTO(Long id, String name, String description, UserResponseDTO user, List<StudyTracker> studies) {
+	public MatterResponseDTO(Long id, String name, String description, UserResponseDTO userResponseDTO, List<StudyTracker> studies) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.user = user;
+		this.userResponseDTO = userResponseDTO;
 		this.studies = studies;
 	}
 	
@@ -38,7 +38,7 @@ public class MatterResponseDTO {
 	}
 
 	public UserResponseDTO getUser() {
-		return user;
+		return userResponseDTO;
 	}
 	
 	public List<StudyTracker> getStudies() {

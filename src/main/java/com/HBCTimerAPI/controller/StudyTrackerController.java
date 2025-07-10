@@ -36,8 +36,8 @@ public class StudyTrackerController{
 	}
 	
 	@PostMapping
-	public ResponseEntity<StudyTrackerResponseDTO> insert(@RequestBody StudyTrackerRequestDTO dto){
-			StudyTracker tracker = trackerService.insert(dto);
+	public ResponseEntity<StudyTrackerResponseDTO> createStudyTracker(@RequestBody StudyTrackerRequestDTO dto){
+			StudyTracker tracker = trackerService.createStudyTracker(dto);
 			return ResponseEntity.ok(StudyTrackerMapper.toDTO(tracker));
 	}
 	

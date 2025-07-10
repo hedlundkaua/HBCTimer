@@ -1,5 +1,6 @@
 package com.HBCTimerAPI.dto.studyTracker;
 
+import java.time.Duration;
 import java.time.Instant;
 
 public class StudyTrackerResponseDTO {
@@ -10,18 +11,20 @@ public class StudyTrackerResponseDTO {
 	private Boolean isActive;
 	private Long matterId;
 	private Long sessionId;
+	private Duration subTotalTime;
 	
 	public StudyTrackerResponseDTO() {
 		
 	}
 	
-	public StudyTrackerResponseDTO(Long id, Long matterId, Long sessionId, Instant startTime, Instant endTime, Boolean isActive) {
+	public StudyTrackerResponseDTO(Long id, Long matterId, Long sessionId, Instant startTime, Instant endTime, Duration subTotalTime, Boolean isActive) {
 		this.id = id;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.isActive = isActive;
 		this.matterId = matterId;
 		this.sessionId = sessionId;
+		this.subTotalTime = subTotalTime;
 	}
 
 	public Long getId() {
@@ -71,4 +74,13 @@ public class StudyTrackerResponseDTO {
 	public void setSessionId(Long sessionId) {
 		this.sessionId = sessionId;
 	}
+
+	public Duration getSubTotalTime() {
+		return subTotalTime;
+	}
+
+	public void setSubTotalTime(Duration subTotalTime) {
+		this.subTotalTime = subTotalTime;
+	}
 }
+

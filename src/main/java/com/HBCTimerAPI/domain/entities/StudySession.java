@@ -1,7 +1,7 @@
 package com.HBCTimerAPI.domain.entities;
 
 import java.time.Duration;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +27,7 @@ public class StudySession {
 	private Long id;
 	
 	
-	private Instant date;
+	private LocalDate date;
 	
 	@Column(name = "total_time_of_day")
 	private Long totalTimeOfDay = 0L;
@@ -43,19 +43,29 @@ public class StudySession {
 		
 	}
 
-	public StudySession(Long id, Instant date, Long totalTimeDate, User student) {
+	public StudySession(LocalDate date, Long totalTimeDate, User student) {
 		super();
-		this.id = id;
 		this.date = date;
 		this.totalTimeOfDay = totalTimeDate;
 		this.student = student;
 	}
 
-	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public void setTotalTimeOfDay(Long totalTimeOfDay) {
+		this.totalTimeOfDay = totalTimeOfDay;
+	}
+
+	public void setStudent(User student) {
+		this.student = student;
+	}
+
 	public Long getId() {
 		return id;
 	}
-	public Instant getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 

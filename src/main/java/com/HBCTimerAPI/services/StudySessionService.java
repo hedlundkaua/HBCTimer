@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.HBCTimerAPI.domain.entities.StudySession;
 import com.HBCTimerAPI.repository.StudySessionRepository;
+import com.HBCTimerAPI.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class StudySessionService {
+public class StudySessionService{
 	
 	
 	 private final StudySessionRepository repository;
@@ -19,8 +20,13 @@ public class StudySessionService {
 	 
 	 public StudySession findByid(Long id) {
 		Optional<StudySession> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	 }
+	 
+	 
+	 
+	 
+	 
 	 
 	 public void deleteById(Long id) {
 		 repository.deleteById(id);

@@ -1,5 +1,7 @@
 package com.HBCTimerAPI.services;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,9 +38,29 @@ public class StudyTrackerService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public StudyTracker insert(StudyTrackerRequestDTO dto) {
-		StudySession session = sessionRepo.findById(dto.getSessionId()).orElseThrow();
+	public StudyTracker createStudyTracker(StudyTrackerRequestDTO dto) {
 		Matter matter = matterRepo.findById(dto.getMatterId()).orElseThrow();
+		
+	
+		//extrai a data do starTime do DDTO
+		LocalDate trackerDate = dto.getStartTime()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		
+		Optional<StudySession> optionalSession = 
+				sessionRepo.findByStudentAndDate(matter.getStudent(), trackerDate);
+		
+		
+		
+		StudySession session = optionalSession.orElseGet(() -> {
+			StudySession newSession = new StudySession();
+			newSession.setDate(trackerDate);
+			newSession.setStudent(matter.getStudent());
+			newSession.setTotalTimeOfDay(0L);
+			return sessionRepo.save(newSession);
+		});
+		
+		
 		
 		StudyTracker tracker = StudyTrackerMapper.toEntity(dto, matter, session);
 		StudyTracker savedTracker = studyTrackerRepo.save(tracker);
@@ -89,6 +111,4 @@ public class StudyTrackerService {
 		tracker.setStartTime(obj.getStartTime());
 		tracker.setEndTime(obj.getEndTime());
 	}
-	
-	
 }

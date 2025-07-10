@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.HBCTimerAPI.domain.entities.StudySession;
+import com.HBCTimerAPI.dto.session.SessionResponseDTO;
+import com.HBCTimerAPI.mapper.SessionMapper;
 import com.HBCTimerAPI.services.StudySessionService;
 
 @RestController
@@ -20,9 +22,9 @@ public class StudySessionController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<StudySession> findById(@PathVariable Long id){
+	public ResponseEntity<SessionResponseDTO> findById(@PathVariable Long id){
 		StudySession obj = sessionService.findByid(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(SessionMapper.toDTO(obj));
 	}
 	
 	

@@ -20,7 +20,6 @@ public class StudyTrackerMapper {
 				false);
 	}
 	
-	
 	public static StudyTrackerResponseDTO toDTO(StudyTracker tracker) {
 		StudyTrackerResponseDTO dto = new StudyTrackerResponseDTO();
 		dto.setId(tracker.getId());
@@ -29,6 +28,7 @@ public class StudyTrackerMapper {
 		dto.setStartTime(tracker.getStartTime());
 		dto.setEndTime(tracker.getEnd());
 		dto.setIsActive(tracker.getIsActive());
+		dto.setSubTotalTime(tracker.getTotalTime());
 		return dto;
 	}
 	

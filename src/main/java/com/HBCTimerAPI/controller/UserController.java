@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.HBCTimerAPI.domain.entities.User;
-import com.HBCTimerAPI.dto.user.UserRequestDTO;
 import com.HBCTimerAPI.dto.user.UserResponseDTO;
 import com.HBCTimerAPI.mapper.UserMapper;
 import com.HBCTimerAPI.services.UserService;
@@ -41,7 +40,7 @@ public class UserController {
 	}
 		
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO obj){
+	public ResponseEntity<UserResponseDTO> insert(@RequestBody User obj){
 		User user = service.insert(UserMapper.toEntity(obj));
 		return ResponseEntity.ok().body(UserMapper.toDTO(user));
 	}
