@@ -15,22 +15,24 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
-@Entity
-@Table(name = "tb_user")
+// core de estudantes
+@Entity //informar que é uma entidade de persistência para o JPA
+@Table(name = "tb_user") //especifica o nome da tabela no BD qua qual a classe está mapeada
 public class User implements Serializable{
-	
+//implentamos Serializable para podermos serializar nossos objetos da classe
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
+
+	@Id //designamos abaixo nossa primary key da entidade no BD
+	//definimos como valor da PK e o méthodo de gerar esse valor
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
+	private String name; // atributos do nosso objeto
 	private String email;
 	private String password;
 	
-	@JsonIgnore
+	@JsonIgnore //ignora este campo ao gerar o JSON de resposta
 	@OneToMany(mappedBy = "student")
 	private List<Matter> matters = new ArrayList<>();
 	
